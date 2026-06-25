@@ -26,7 +26,7 @@ public class Task03Test {
             "resources/test" + this.id + ".txt"
         );
 
-        assertEquals(0, task.partOne(input));
+        assertEquals(357, task.partOne(input));
         assertEquals(0, task.partTwo(input));
     }
 
@@ -36,7 +36,7 @@ public class Task03Test {
             "resources/input" + this.id + ".txt"
         );
 
-        assertEquals(0, task.partOne(input));
+        assertEquals(17321, task.partOne(input));
         assertEquals(0, task.partTwo(input));
     }
 }

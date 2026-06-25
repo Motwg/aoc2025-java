@@ -7,7 +7,12 @@ public class Task03 implements Task {
 
     @Override
     public long partOne(List<String> input) {
-        return -1;
+        return input
+            .stream()
+            .map(Bank::new)
+            .map(Bank::joltage)
+            .mapToInt(Integer::intValue)
+            .sum();
     }
 
     @Override
