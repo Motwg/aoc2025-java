@@ -10,7 +10,6 @@ public class Task02 implements Task {
     public long shared(List<String> input, InvalidIdGen iig) {
         return Stream.of(String.join(",", input).split(","))
             .filter(str -> str != "")
-            .peek(System.out::println)
             .map(Range::new)
             .map(iig::fromRange)
             .reduce(LongStream.empty(), LongStream::concat)

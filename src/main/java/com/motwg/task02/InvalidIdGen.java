@@ -1,6 +1,7 @@
 package com.motwg.task02;
 
 import java.util.function.LongPredicate;
+import java.util.stream.IntStream;
 import java.util.stream.LongStream;
 
 public class InvalidIdGen {
@@ -28,13 +29,6 @@ public class InvalidIdGen {
 
     public static Boolean isInvalid(long integer) {
         String asString = String.valueOf(integer);
-        System.out.println(
-            asString +
-                "  =>  " +
-                asString.substring(0, (int) (asString.length() / 2)) +
-                " == " +
-                asString.substring((int) (asString.length() / 2))
-        );
         return (
             asString
                 .substring(0, asString.length() / 2)
@@ -44,7 +38,13 @@ public class InvalidIdGen {
 
     public static Boolean isMultiInvalid(long integer) {
         String asString = String.valueOf(integer);
-
-        return false;
+        long patterns = IntStream.rangeClosed(1, asString.length() / 2)
+            .filter(digits -> {
+                return asString.matches(
+                    "^(" + asString.substring(0, digits) + ")*$"
+                );
+            })
+            .count();
+        return patterns > 0;
     }
 }
