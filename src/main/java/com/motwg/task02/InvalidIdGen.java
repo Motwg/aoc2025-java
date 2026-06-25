@@ -1,16 +1,32 @@
 package com.motwg.task02;
 
+import java.util.function.LongPredicate;
 import java.util.stream.LongStream;
 
 public class InvalidIdGen {
 
+    private LongPredicate predicate;
+
+    public InvalidIdGen(IdMethod idMethod) {
+        switch (idMethod) {
+            case Dbl: {
+                predicate = InvalidIdGen::isInvalid;
+                break;
+            }
+            case atLeastDbl: {
+                predicate = InvalidIdGen::isMultiInvalid;
+                break;
+            }
+        }
+    }
+
     public LongStream fromRange(Range range) {
         return LongStream.rangeClosed(range.getFrom(), range.getTo()).filter(
-            this::isInvalid
+            predicate
         );
     }
 
-    public Boolean isInvalid(long integer) {
+    public static Boolean isInvalid(long integer) {
         String asString = String.valueOf(integer);
         System.out.println(
             asString +
@@ -26,15 +42,9 @@ public class InvalidIdGen {
         );
     }
 
-    public Boolean isMultiInvalid(long integer) {
+    public static Boolean isMultiInvalid(long integer) {
         String asString = String.valueOf(integer);
 
         return false;
-    }
-
-    public int generate(int digits) {
-        int a = digits / 2;
-        System.out.println(a);
-        return 0;
     }
 }
