@@ -27,7 +27,7 @@ public class Task02Test {
         );
 
         assertEquals(1227775554, task.partOne(input));
-        // assertEquals(0, task.partTwo(input));
+        assertEquals(4174379265L, task.partTwo(input));
     }
 
     @Test
@@ -36,7 +36,7 @@ public class Task02Test {
             "resources/input" + this.id + ".txt"
         );
 
-        assertEquals(0, task.partOne(input));
-        // assertEquals(0, task.partTwo(input));
+        assertEquals(30608905813L, task.partOne(input));
+        assertEquals(0, task.partTwo(input));
     }
 }

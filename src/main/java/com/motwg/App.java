@@ -8,7 +8,7 @@ public class App {
 
     public static void main(String[] args) {
         List<String> input = LineReader.readFile("resources/input02.txt");
-        int output = new Task02().partOne(input);
+        long output = new Task02().partOne(input);
 
         System.out.println(output);
     }

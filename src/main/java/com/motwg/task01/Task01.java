@@ -6,7 +6,7 @@ import java.util.List;
 public class Task01 implements Task {
 
     @Override
-    public int partOne(List<String> input) {
+    public long partOne(List<String> input) {
         Vault v = new Vault();
         input
             .stream()
@@ -18,7 +18,7 @@ public class Task01 implements Task {
     }
 
     @Override
-    public int partTwo(List<String> input) {
+    public long partTwo(List<String> input) {
         Vault v = new Vault(true);
         input
             .stream()
