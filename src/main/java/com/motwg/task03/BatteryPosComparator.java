@@ -6,6 +6,6 @@ public class BatteryPosComparator implements Comparator<Battery> {
 
     @Override
     public int compare(Battery first, Battery second) {
-        return second.getPosition() - first.getPosition();
+        return first.getPosition() - second.getPosition();
     }
 }

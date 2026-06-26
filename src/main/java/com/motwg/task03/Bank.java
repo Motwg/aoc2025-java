@@ -7,10 +7,12 @@ import java.util.stream.IntStream;
 
 public class Bank {
 
-    private List<Battery> batteries;
+    private List<Battery> offBatteries;
+    private List<Battery> onBatteries;
 
     public Bank(String string) {
-        this.batteries = IntStream.range(0, string.length())
+        this.onBatteries = new LinkedList<>();
+        this.offBatteries = IntStream.range(0, string.length())
             .mapToObj(i -> {
                 return new Battery(i, string.charAt(i));
             })
@@ -18,31 +20,57 @@ public class Bank {
             .collect(Collectors.toList());
     }
 
-    public List<Battery> getBatteries() {
-        return batteries;
+    public List<Battery> getOnBatteries() {
+        return onBatteries;
     }
 
-    public int joltage() {
-        List<Battery> rest = new LinkedList<>(this.batteries);
+    public List<Battery> getOffBatteries() {
+        return offBatteries;
+    }
 
-        Battery first =
-            rest.get(0).getPosition() == rest.size() - 1
-                ? rest.remove(1)
-                : rest.remove(0);
-        Battery second = rest
+    public Battery chooseBest(int fromPos, int toPos) {
+        return offBatteries
             .stream()
             .dropWhile(b -> {
-                return b.getPosition() <= first.getPosition();
+                return fromPos > b.getPosition() || b.getPosition() > toPos;
             })
             .findFirst()
             .get();
-        return Integer.valueOf(
-            String.valueOf(first.getValue()) + String.valueOf(second.getValue())
+    }
+
+    public long turnOn(int size) {
+        IntStream.range(0, size).forEachOrdered(current -> {
+            int fromPos = onBatteries.isEmpty()
+                ? -1
+                : onBatteries.get(onBatteries.size() - 1).getPosition();
+            Battery winner = chooseBest(
+                fromPos,
+                offBatteries.size() + onBatteries.size() - size + current
+            );
+            offBatteries.remove(winner);
+            onBatteries.add(winner);
+        });
+        return currentJoltage();
+    }
+
+    public long currentJoltage() {
+        return Long.valueOf(
+            onBatteries
+                .stream()
+                .sorted(new BatteryPosComparator())
+                .map(Battery::getValue)
+                .map(String::valueOf)
+                .collect(Collectors.joining())
         );
     }
 
     @Override
     public String toString() {
-        return this.batteries.toString();
+        return (
+            "Off:\t" +
+            this.offBatteries.toString() +
+            "\nOn :\t" +
+            this.onBatteries.toString()
+        );
     }
 }

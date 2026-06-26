@@ -10,13 +10,18 @@ public class Task03 implements Task {
         return input
             .stream()
             .map(Bank::new)
-            .map(Bank::joltage)
-            .mapToInt(Integer::intValue)
+            .map(b -> b.turnOn(2))
+            .mapToLong(Long::longValue)
             .sum();
     }
 
     @Override
     public long partTwo(List<String> input) {
-        return -1;
+        return input
+            .stream()
+            .map(Bank::new)
+            .map(b -> b.turnOn(12))
+            .mapToLong(Long::longValue)
+            .sum();
     }
 }
