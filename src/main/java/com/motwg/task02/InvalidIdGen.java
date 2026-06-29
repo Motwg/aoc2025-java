@@ -1,5 +1,6 @@
 package com.motwg.task02;
 
+import com.motwg.shared.Range;
 import java.util.function.LongPredicate;
 import java.util.stream.IntStream;
 import java.util.stream.LongStream;

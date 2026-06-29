@@ -1,5 +1,6 @@
 package com.motwg.task02;
 
+import com.motwg.shared.Range;
 import com.motwg.shared.Task;
 import java.util.List;
 import java.util.stream.LongStream;

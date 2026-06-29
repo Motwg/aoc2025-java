@@ -7,7 +7,8 @@ public class Task05 implements Task {
 
     @Override
     public long partOne(List<String> input) {
-        return -1;
+        Database db = new Database(input);
+        return db.countFresh();
     }
 
     @Override

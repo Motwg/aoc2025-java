@@ -1,4 +1,4 @@
-package com.motwg.task02;
+package com.motwg.shared;
 
 public class Range {
 
@@ -11,6 +11,14 @@ public class Range {
 
     public long getTo() {
         return to;
+    }
+
+    public boolean inInclusive(long value) {
+        return value >= from && value <= to;
+    }
+
+    public boolean inExclusive(long value) {
+        return value > from && value < to;
     }
 
     public Range(String string) {
