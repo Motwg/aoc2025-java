@@ -27,6 +27,10 @@ public class Grid<V> implements Iterable<Map.Entry<Point, V>> {
         return grid.put(new Point(i, j), value);
     }
 
+    public V remove(Point p) {
+        return grid.remove(p);
+    }
+
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (Map.Entry<Point, V> entry : this) {

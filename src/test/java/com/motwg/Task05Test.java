@@ -4,20 +4,20 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.motwg.shared.LineReader;
 import com.motwg.shared.Task;
-import com.motwg.task04.Task04;
+import com.motwg.task05.Task05;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class Task04Test {
+public class Task05Test {
 
     private Task task;
     private String id;
 
     @BeforeEach
     public void setUp() {
-        this.task = new Task04();
-        this.id = "04";
+        this.task = new Task05();
+        this.id = "05";
     }
 
     @Test
@@ -26,8 +26,8 @@ public class Task04Test {
             "resources/test" + this.id + ".txt"
         );
 
-        assertEquals(13, task.partOne(input));
-        assertEquals(43, task.partTwo(input));
+        assertEquals(0, task.partOne(input));
+        assertEquals(0, task.partTwo(input));
     }
 
     @Test
@@ -36,7 +36,7 @@ public class Task04Test {
             "resources/input" + this.id + ".txt"
         );
 
-        assertEquals(1505, task.partOne(input));
-        assertEquals(9182, task.partTwo(input));
+        assertEquals(0, task.partOne(input));
+        assertEquals(0, task.partTwo(input));
     }
 }

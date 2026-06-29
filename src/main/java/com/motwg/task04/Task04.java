@@ -8,11 +8,18 @@ public class Task04 implements Task {
     @Override
     public long partOne(List<String> input) {
         PaperGrid grid = new PaperGrid(input);
-        return grid.accessibleRolls();
+        return grid.countAccessibleRolls();
     }
 
     @Override
     public long partTwo(List<String> input) {
-        return -1;
+        PaperGrid grid = new PaperGrid(input);
+        long rolls = 0;
+        long removed = 0;
+        do {
+            removed = grid.removeAccesibbleRolls();
+            rolls += removed;
+        } while (removed > 0);
+        return rolls;
     }
 }

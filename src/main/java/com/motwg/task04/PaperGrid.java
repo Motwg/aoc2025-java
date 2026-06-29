@@ -2,6 +2,7 @@ package com.motwg.task04;
 
 import com.motwg.shared.Grid;
 import java.awt.Point;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.IntStream;
@@ -15,11 +16,23 @@ public class PaperGrid extends Grid<Character> {
                 this.set(j, i, line.charAt(j));
             }
         }
-        // System.out.println(this);
     }
 
-    public int accessibleRolls() {
-        int counter = 0;
+    public long removeAccesibbleRolls() {
+        long i = 0;
+        for (Map.Entry<Point, Character> roll : accessibleRolls()) {
+            remove(roll.getKey());
+            i += 1;
+        }
+        return i;
+    }
+
+    public int countAccessibleRolls() {
+        return accessibleRolls().size();
+    }
+
+    private List<Map.Entry<Point, Character>> accessibleRolls() {
+        List<Map.Entry<Point, Character>> rolls = new LinkedList<>();
         for (Map.Entry<Point, Character> roll : this) {
             if (
                 isAccessible(
@@ -27,10 +40,10 @@ public class PaperGrid extends Grid<Character> {
                     (int) roll.getKey().getY()
                 )
             ) {
-                counter += 1;
+                rolls.add(roll);
             }
         }
-        return counter;
+        return rolls;
     }
 
     private boolean isAccessible(int i, int j) {
