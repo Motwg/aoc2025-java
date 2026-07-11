@@ -1,6 +1,7 @@
 package com.motwg.task05;
 
 import com.motwg.shared.Range;
+import com.motwg.shared.RangeSequence;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -34,5 +35,9 @@ public class Database {
             .stream()
             .filter(id -> ranges.stream().anyMatch(r -> r.inInclusive(id)))
             .count();
+    }
+
+    public long countConsideredFresh() {
+        return new RangeSequence(ranges).countInclusive();
     }
 }

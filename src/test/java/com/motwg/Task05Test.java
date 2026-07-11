@@ -27,7 +27,7 @@ public class Task05Test {
         );
 
         assertEquals(3, task.partOne(input));
-        assertEquals(0, task.partTwo(input));
+        assertEquals(14, task.partTwo(input));
     }
 
     @Test
@@ -37,6 +37,6 @@ public class Task05Test {
         );
 
         assertEquals(635, task.partOne(input));
-        assertEquals(0, task.partTwo(input));
+        assertEquals(369761800782619L, task.partTwo(input));
     }
 }
