@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.Map.Entry;
 
 public class Grid<V> implements Iterable<Map.Entry<Point, V>> {
@@ -29,6 +30,10 @@ public class Grid<V> implements Iterable<Map.Entry<Point, V>> {
 
     public V remove(Point p) {
         return grid.remove(p);
+    }
+
+    public Set<Entry<Point, V>> entrySet() {
+        return grid.entrySet();
     }
 
     public String toString() {
